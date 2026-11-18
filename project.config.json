@@ -1,0 +1,11 @@
+{
+  "name": "devaura",
+  "version": "0.1.0",
+  "description": "Zero-dependency, modular JavaScript toolkit for browser visual effects and Node server utilities",
+  "author": "Abhishek",
+  "npmUsername": "strange47",
+  "githubUsername": "Abhishek-047",
+  "repository": "Abhishek-047/DevAura",
+  "license": "MIT",
+  "minNodeVersion": "18"
+}

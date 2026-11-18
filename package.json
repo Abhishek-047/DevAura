@@ -1,0 +1,85 @@
+{
+  "name": "devaura",
+  "version": "0.1.0",
+  "description": "Zero-dependency, modular JavaScript toolkit for browser visual effects and Node server utilities",
+  "type": "module",
+  "main": "./dist/cjs/server/index.cjs",
+  "module": "./dist/esm/server/index.js",
+  "types": "./types/server.d.ts",
+  "exports": {
+    "./effects": {
+      "browser": {
+        "types": {
+          "import": "./types/effects.d.ts",
+          "require": "./types/effects.d.cts"
+        },
+        "import": "./dist/esm/effects/index.js",
+        "require": "./dist/cjs/effects/index.cjs"
+      },
+      "types": {
+        "import": "./types/effects.d.ts",
+        "require": "./types/effects.d.cts"
+      },
+      "import": "./dist/esm/effects/index.js",
+      "require": "./dist/cjs/effects/index.cjs"
+    },
+    "./server": {
+      "types": {
+        "import": "./types/server.d.ts",
+        "require": "./types/server.d.cts"
+      },
+      "import": "./dist/esm/server/index.js",
+      "require": "./dist/cjs/server/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "types",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "LEARNING.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "prepack": "node scripts/build.js",
+    "prepublishOnly": "node scripts/prepublish-check.js",
+    "test": "node --test tests/**/*.test.js",
+    "test:separation": "node tests/separation.test.js",
+    "test:package": "node tests/package.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhishek-047/DevAura.git"
+  },
+  "keywords": [
+    "canvas",
+    "effects",
+    "snow",
+    "particles",
+    "petals",
+    "confetti",
+    "express",
+    "logger",
+    "request-monitor",
+    "error-handler",
+    "response-helper"
+  ],
+  "author": "Abhishek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abhishek-047/DevAura/issues"
+  },
+  "homepage": "https://github.com/Abhishek-047/DevAura#readme",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.4",
+    "esbuild": "^0.25.0",
+    "express": "^4.21.2",
+    "jsdom": "^26.0.0",
+    "publint": "^0.3.8"
+  }
+}

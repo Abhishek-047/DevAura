@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevAura Effects Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 520px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      margin: 0 0 1.5rem;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    button {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    button:hover {
+      background: #475569;
+      transform: translateY(-1px);
+    }
+    button.primary {
+      background: #6366f1;
+      border-color: #818cf8;
+    }
+    button.primary:hover {
+      background: #4f46e5;
+    }
+    button.danger {
+      background: #dc2626;
+      border-color: #ef4444;
+      grid-column: span 2;
+    }
+    button.danger:hover {
+      background: #b91c1c;
+    }
+    .status {
+      font-size: 0.85rem;
+      color: #38bdf8;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DevAura Visuals</h1>
+    <p>Zero-dependency canvas effects toolkit with accessibility support, delta-time animation, and full cleanup.</p>
+    <div class="btn-grid">
+      <button onclick="startSnow()">Snow Effect</button>
+      <button onclick="startPetals()">Petals Effect</button>
+      <button onclick="startParticles()">Interactive Particles</button>
+      <button class="primary" onclick="launchConfetti()">Fire Confetti 🎉</button>
+      <button class="danger" onclick="stopCurrent()">Stop All Effects</button>
+    </div>
+    <div class="status" id="status-text">Active effect: None</div>
+  </div>
+
+  <script src="../../dist/devaura-effects.iife.min.js"></script>
+  <script>
+    let activeEffect = null;
+    const statusEl = document.getElementById('status-text');
+
+    function stopCurrent() {
+      if (activeEffect) {
+        activeEffect.destroy();
+        activeEffect = null;
+      }
+      statusEl.textContent = 'Active effect: None';
+    }
+
+    function startSnow() {
+      stopCurrent();
+      activeEffect = DevAura.createSnow({ count: 90, wind: 0.6 });
+      activeEffect.start();
+      statusEl.textContent = 'Active effect: Snow';
+    }
+
+    function startPetals() {
+      stopCurrent();
+      activeEffect = DevAura.createPetals({ count: 40 });
+      activeEffect.start();
+      statusEl.textContent = 'Active effect: Petals';
+    }
+
+    function startParticles() {
+      stopCurrent();
+      activeEffect = DevAura.createParticles({ count: 50, connectLines: true, mouseRepel: true });
+      activeEffect.start();
+      statusEl.textContent = 'Active effect: Interactive Particles';
+    }
+
+    function launchConfetti() {
+      statusEl.textContent = 'Status: Firing confetti burst...';
+      DevAura.fireConfetti({ count: 140, duration: 2500 }).then(() => {
+        if (!activeEffect) {
+          statusEl.textContent = 'Active effect: None';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
