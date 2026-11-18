@@ -68,8 +68,8 @@ export function fireConfetti(options = {}) {
   let startTime = null;
 
   return new Promise((resolve) => {
-    engine.setRenderCallback((ctx, w, h, dt) => {
-      const now = performance.now();
+    engine.setRenderCallback((ctx, w, h, dt, currentTime) => {
+      const now = typeof currentTime === "number" && !Number.isNaN(currentTime) ? currentTime : performance.now();
       if (!startTime) startTime = now;
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / config.duration, 1);

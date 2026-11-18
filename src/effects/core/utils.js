@@ -8,6 +8,19 @@ export function randomChoice(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+export function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+export function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+// Smooth, irregular wind gust in the range -1..1 (product of two slow sine waves)
+export function gustAt(time, speed) {
+  return Math.sin(time * speed) * Math.sin(time * speed * 0.37 + 1.3);
+}
+
 export function degreesToRadians(degrees) {
   return (degrees * Math.PI) / 180;
 }

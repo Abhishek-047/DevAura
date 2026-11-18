@@ -195,7 +195,9 @@ describe('devaura/effects tests in simulated DOM', () => {
     const promise = fireConfetti({ count: 20, duration: 200 });
     assert.strictEqual(typeof promise.then, 'function');
 
-    triggerRaf(performance.now() + 300);
+    // Trigger initial frame to record start time, then subsequent frame past duration
+    triggerRaf(100);
+    triggerRaf(400);
     await promise;
   });
 });

@@ -116,14 +116,14 @@
 
     function startSnow() {
       stopCurrent();
-      activeEffect = DevAura.createSnow({ count: 90, wind: 0.6 });
+      activeEffect = DevAura.createSnow();
       activeEffect.start();
       statusEl.textContent = 'Active effect: Snow';
     }
 
     function startPetals() {
       stopCurrent();
-      activeEffect = DevAura.createPetals({ count: 40 });
+      activeEffect = DevAura.createPetals();
       activeEffect.start();
       statusEl.textContent = 'Active effect: Petals';
     }

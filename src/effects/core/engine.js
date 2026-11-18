@@ -97,7 +97,7 @@ export function createEngine(options = {}) {
     if (ctx) {
       ctx.clearRect(0, 0, width, height);
       if (renderCallback) {
-        renderCallback(ctx, width, height, dt);
+        renderCallback(ctx, width, height, dt, currentTime);
       }
     }
 

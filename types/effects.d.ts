@@ -15,6 +15,9 @@ export interface SnowOptions extends BaseEffectOptions {
   colors?: string[];
   wind?: number;
   opacity?: number;
+  flake?: 'mixed' | 'classic' | 'soft' | 'dot';
+  gustStrength?: number;
+  gustSpeed?: number;
 }
 
 export interface PetalsOptions extends BaseEffectOptions {
@@ -26,6 +29,9 @@ export interface PetalsOptions extends BaseEffectOptions {
   colors?: string[];
   swayAmplitude?: number;
   rotationSpeed?: number;
+  wind?: number;
+  gustStrength?: number;
+  gustSpeed?: number;
 }
 
 export interface ParticlesOptions extends BaseEffectOptions {
